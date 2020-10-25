@@ -22,6 +22,7 @@ selectedDish: Dish;
   }
 
   Selectdish(dish: Dish){
+    console.log(dish);
     this.selectedDish = dish;
   }
 

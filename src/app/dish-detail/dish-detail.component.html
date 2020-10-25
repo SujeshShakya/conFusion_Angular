@@ -37,7 +37,7 @@
 
   <div fxFlex="40">
     Comments
-    <mat-list  *ngFor="let comment of dish.comments" dense>
+    <mat-list *ngFor="let comment of dish.comments" dense>
        <mat-list-item>{{comment.comment}}</mat-list-item>
        <mat-list-item>{{comment.rating}} Stars</mat-list-item>
        <mat-list-item>--{{comment.author}} {{comment.date | date}} </mat-list-item>
