@@ -12,9 +12,9 @@ import {  MatFormField, MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule} from '@angular/material/checkbox';
 import { FormsModule } from '@angular/forms';  
-
-
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSelectModule } from '@angular/material/select';
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
@@ -31,7 +31,7 @@ import { LeaderService } from './services/leader.service';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { LoginComponent } from './login/login.component';
-import { MatDialogModule} from '@angular/material'
+import { MatDialogModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -59,7 +59,10 @@ import { MatDialogModule} from '@angular/material'
     MatFormFieldModule,
     MatInputModule,
     MatCheckboxModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    MatSlideToggleModule,
+    MatSelectModule
 
   ],
   entryComponents: [LoginComponent],
