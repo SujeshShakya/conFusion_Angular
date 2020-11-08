@@ -28,6 +28,7 @@ import { ContactComponent } from './contact/contact.component';
 import { DishService } from './services/dish.service';
 import { PromotionService } from './services/promotion.service';
 import { LeaderService } from './services/leader.service';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { LoginComponent } from './login/login.component';
@@ -62,8 +63,8 @@ import { MatDialogModule} from '@angular/material';
     FormsModule,
     ReactiveFormsModule,
     MatSlideToggleModule,
-    MatSelectModule
-
+    MatSelectModule,
+    MatProgressSpinnerModule
   ],
   entryComponents: [LoginComponent],
   providers: [DishService, PromotionService, LeaderService],
