@@ -46,11 +46,43 @@
        <mat-list-item>{{comment.comment}}</mat-list-item>
        <mat-list-item>{{comment.rating}} Stars</mat-list-item>
        <mat-list-item>--{{comment.author}} {{comment.date | date}} </mat-list-item>
-
     </mat-list>
   </div>
+
+
+  <div fxFlex>  
+    <form novalidate [formGroup]="commentForm" #cform="ngForm" (ngSubmit)="onSubmit()">
+      <mat-list *ngIf="cform.form.valid" dense>
+        <mat-list-item>{{commentForm.value.comment}}</mat-list-item>
+        <mat-list-item>{{commentForm.value.rating}}</mat-list-item>
+        <mat-list-item>-- {{commentForm.value.author}}  </mat-list-item>
+     </mat-list>
+      <p>
+        <mat-form-field class="half-width">
+          <input matInput formControlName="author" placeholder="Author" type="text" required>
+          <mat-error *ngIf="formErrors.author">{{formErrors.author}}</mat-error>
+        </mat-form-field>
+      </p>
+      <p>
+        <!-- <mat-form-field class="half-width"> -->
+          <mat-slider formControlName="rating" placeholder="Rating" min="1" max="5" step="1" value="5" tickInterval="1" thumbLabel="1"></mat-slider>
+        <!-- </mat-form-field> -->
+      </p>
+      <p> 
+        <mat-form-field class="full-width">
+          <textarea matInput formControlName="comment" placeholder="Comment" rows=12></textarea>
+          <mat-error *ngIf="formErrors.comment">{{formErrors.comment}}</mat-error>
+          <!-- <mat-error *ngIf="formErrors.comment">{{formErrors.comment}}</mat-error> -->
+        </mat-form-field>
+      </p>
+      <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="cform.form.invalid">Submit</button>
+    </form>
+  </div>
+
+
   <mat-card-actions>
     <button mat-button (click)="goBack()">BACK</button>
+    </mat-card-actions>
 
 
 
