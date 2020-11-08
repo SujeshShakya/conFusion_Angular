@@ -12,6 +12,10 @@ export class DishService {
 
   constructor() { }
 
+  getDishIds() : Observable<string[]>{
+    return of(Dishes.map((dish) => dish.id));
+  }
+
   getDishes(): Observable<Dish[]>{
     return of(Dishes).pipe(delay(2000));
     // return new Promise (resolve => {
