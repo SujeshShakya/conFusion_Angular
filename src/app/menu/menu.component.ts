@@ -17,7 +17,7 @@ selectedDish: Dish;
   constructor(private dishService: DishService) { }
 
   ngOnInit() {
-  this.dishService.getDishes().then(
+  this.dishService.getDishes().subscribe(
       (dishes) => this.dishes = dishes
     );
   }
