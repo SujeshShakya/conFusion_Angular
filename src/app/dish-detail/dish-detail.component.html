@@ -6,7 +6,7 @@
     fxLayoutGap="10px" 
     fxLayoutGap.xs="0">
 
-    <mat-grid-list cols="2" rowHeight="200px">
+    <mat-grid-list cols="2" rowHeight="200px" *ngIf="dishes">
       <mat-grid-tile *ngFor="let dish of dishes">
         <img height="200px" src={{dish.image}} alt={{dish.name}}>
         <mat-grid-tile-footer>
@@ -14,6 +14,11 @@
         </mat-grid-tile-footer>
       </mat-grid-tile>
     </mat-grid-list>
+    <div fxFlex *ngIf="errMess">
+      <h2>Error</h2>
+      <h4>{{errMess}}</h4>
+    </div>
+
   </div>
 
   <div fxFlex="40">

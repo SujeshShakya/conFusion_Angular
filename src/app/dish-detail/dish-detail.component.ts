@@ -7,6 +7,8 @@ import { switchMap } from 'rxjs/operators';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Comment } from '../shared/comment';
 
+import { ProcessHTTPMsgService } from '../services/process-httpmsg.service';
+
 
 @Component({
   selector: 'app-dish-detail',
@@ -23,6 +25,7 @@ export class DishDetailComponent implements OnInit {
   next: string;
   commentForm: FormGroup;
   comment: Comment;
+  errMess: string;
 
   formErrors = {
     'author': '',
@@ -43,14 +46,14 @@ export class DishDetailComponent implements OnInit {
   };
 
   constructor(private route: ActivatedRoute, private location: Location,
-    private dishService: DishService, private fb: FormBuilder) {
+    private dishService: DishService, private fb: FormBuilder, private processHTTPMsgService: ProcessHTTPMsgService) {
       this.createForm();
      }
 
   ngOnInit() {
     this.dishService.getDishIds().subscribe((dishIds) => this.dishIds = dishIds);
     this.route.params.pipe(switchMap((params: Params) => this.dishService.getDish(params['id'])))
-    .subscribe((dish) => { this.dish = dish; this.setPrevNext(dish.id);});
+    .subscribe((dish) => { this.dish = dish; this.setPrevNext(dish.id);}, errmess => this.errMess = <any>errmess);
   }
 
   createForm(){

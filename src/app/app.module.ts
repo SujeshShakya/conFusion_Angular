@@ -31,6 +31,7 @@ import { ContactComponent } from './contact/contact.component';
 import { DishService } from './services/dish.service';
 import { PromotionService } from './services/promotion.service';
 import { LeaderService } from './services/leader.service';
+import { ProcessHTTPMsgService } from './services/process-httpmsg.service';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
@@ -74,7 +75,7 @@ import { baseURL } from './shared/baseurl';
     HttpClientModule
   ],
   entryComponents: [LoginComponent],
-  providers: [DishService, PromotionService, LeaderService, {provide: 'BaseURL', useValue: baseURL }],
+  providers: [DishService, PromotionService, LeaderService, ProcessHTTPMsgService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
