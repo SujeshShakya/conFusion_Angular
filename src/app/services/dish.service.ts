@@ -4,7 +4,7 @@ import { Dishes } from '../shared/dishes';
 import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { baseURL } from '../shared/baseurl';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {map, catchError} from 'rxjs/operators';
 
 import { ProcessHTTPMsgService } from './process-httpmsg.service';
@@ -47,5 +47,16 @@ export class DishService {
   // return new Promise ( resolve =>{
   //   setTimeout(() => resolve(Dishes.filter((dish) => dish.featured == true)[0]),2000)
   // }) 
+  }
+
+  putDish(dish: Dish): Observable<Dish> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })
+    };
+    return this.httpClient.put<Dish>(baseURL + 'dishes/' + dish.id, dish, httpOptions)
+      .pipe(catchError(this.processHTTPMsgService.handleError));
+
   }
 }

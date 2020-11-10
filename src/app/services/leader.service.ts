@@ -1,19 +1,25 @@
 import { Injectable } from '@angular/core';
 import {Leader} from '../shared/leader';
 import {Leaders} from '../shared/leaders';
+import { HttpClient } from '@angular/common/http';
+import { baseURL} from '../shared/baseurl';
+import {Observable} from 'rxjs';
+import {map, catchError} from 'rxjs/operators';
+
+import { ProcessHTTPMsgService } from './process-httpmsg.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LeaderService {
   
-  constructor() { }
+  constructor(private http: HttpClient, private processHTTPMsgService: ProcessHTTPMsgService) { }
 
-  getLeaders(): Leader[]{
-    return Leaders;
+  getLeaders(): Observable<Leader[]>{
+    return this.http.get<Leader[]>(baseURL + '/leaders').pipe(catchError(this.processHTTPMsgService.handleError));
   }
 
-  getFeaturedLeader(): Leader{
-    return Leaders.filter((leader) => leader.featured == true )[0];
+  getFeaturedLeader(): Observable<Leader>{
+    return this.http.get<Leader>(baseURL + '/leaders?featured=true').pipe(map(leaders => leaders[0])).pipe(catchError(this.processHTTPMsgService.handleError));
   }
 }
